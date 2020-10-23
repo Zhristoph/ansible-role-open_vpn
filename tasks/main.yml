@@ -1,0 +1,37 @@
+---
+- name: Install OpenVPN package
+  tags: openvpn
+  apt:
+    name: "{{ packages }}"
+  vars:
+   packages:
+     - openvpn
+
+- name: Create OpenVPN config directory
+  tags: openvpn
+  file:
+    dest: /etc/openvpn/server
+    owner: root
+    group: root
+    mode: "u=rwx,g=rx,o=rx"
+    state: directory
+
+- name: Deploy OpenVPN config
+  tags: openvpn
+  template:
+    src: "server.conf"
+    dest: "/etc/openvpn/server/{{ item.vpnName }}.conf"
+    owner: root
+    group: root
+    mode: "u=rw,g=r,o=r"
+  notify: restart openvpn-servers
+  with_items:
+   - "{{ openVPNs }}"
+
+- name: Enable openvpn
+  tags: openvpn
+  systemd:
+    name: "openvpn-server@{{ item.vpnName }}"
+    enabled: yes
+  with_items:
+   - "{{ openVPNs }}"

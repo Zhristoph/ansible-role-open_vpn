@@ -1,0 +1,8 @@
+- name: restart openvpn-servers
+  systemd:
+    name: "openvpn-server@{{ item.vpnName }}"
+    daemon_reload: yes
+    state: restarted
+  with_items:
+   - "{{ openVPNs }}"
+

@@ -1,0 +1,14 @@
+#openVPNs:
+#  - vpnName: example
+#    port: 1194
+#    protocol: udp
+#    ca: example-ca.crt
+#    serverCert: vpn.example.de.crt
+#    serverKey: vpn.example.de.key
+#    serverNetwork4: "10.8.0.0 255.255.255.0"
+#    serverNetwork6: "2001:db8:1:2::/64"
+#    otherConfigs: |
+#      push "route 10.8.1.0 255.255.255.0"
+#      push "route-ipv6 2001:db8:1:4::/64"
+#      push "route-ipv6 2001:db8:1:3::/64"
+#
