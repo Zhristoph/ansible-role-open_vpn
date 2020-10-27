@@ -28,6 +28,24 @@
   with_items:
    - "{{ openVPNs }}"
 
+- name: Set IPv4 forward to 1
+  tags: openvpn
+  sysctl:
+    name: net.ipv4.conf.all.forwarding
+    value: "1"
+    sysctl_set: yes
+    state: present
+    reload: yes
+
+- name: Set IPv6 forward to 1
+  tags: openvpn
+  sysctl:
+    name: net.ipv6.conf.all.forwarding
+    value: "1"
+    sysctl_set: yes
+    state: present
+    reload: yes
+
 - name: Enable openvpn
   tags: openvpn
   systemd:
