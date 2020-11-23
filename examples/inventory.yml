@@ -1,0 +1,7 @@
+all:
+  hosts:
+  children:
+    openvpn:
+      hosts:
+        openvpn01:
+        openvpn02:

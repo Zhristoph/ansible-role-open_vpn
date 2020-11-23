@@ -1,0 +1,7 @@
+- name: OpenVPN
+  hosts: openvpn
+  become: yes
+  gather_facts: no
+  roles:
+    - ffdhegroups
+    - open_vpn
